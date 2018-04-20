@@ -85,6 +85,8 @@ production:
   database: d9eksv3ehfqi6h
   username: trbyxgtfjrvjro
   password: 5bb9fc1cfc555e35ce9c38d08d1c0182ceb5f8cea1092b83d6096a2ff83e31d3
+  port: 5432
+  host: ec2-54-225-96-191.compute-1.amazonaws.com
 
 
 
