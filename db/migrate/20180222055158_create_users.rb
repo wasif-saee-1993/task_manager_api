@@ -1,6 +1,6 @@
 class CreateUsers < ActiveRecord::Migration[5.1]
   def change
-    create_table :feedbacks do |t|
+    create_table :users do |t|
       t.string :name
       t.integer :type_id
       t.integer :age
