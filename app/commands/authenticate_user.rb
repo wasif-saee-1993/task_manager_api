@@ -6,7 +6,7 @@ class AuthenticateUser
   end
 
   def call
-    JsonWebToken .encode(user_id: user.id) if user
+    JsonWebToken.encode(user_id: user.id) if user
   end
 
   private
@@ -20,5 +20,21 @@ class AuthenticateUser
 
     errors.add :user_authentication, 'invalid credentials'
     nil
+  end
+end
+
+class JsonWebToken
+  class << self
+    def encode(payload, exp = 24.hours.from_now)
+      payload[:exp] = exp.to_i
+      JWT.encode(payload, Rails.application.secrets.secret_key_base)
+    end
+
+    def decode(token)
+      body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
+      HashWithIndifferentAccess.new body
+    rescue
+      nil
+    end
   end
 end
